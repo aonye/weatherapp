@@ -55,7 +55,7 @@ form input + button {
     margin: 8vh auto auto auto;
     text-align: center;
     justify-content: center;
-    grid-template-columns: 50px 50px 50px 50px;
+    grid-template-columns: 4vw 4vw 4vw 4vw;
     grid-template-rows: auto;
     column-gap: 2vw;
     grid-template-areas:
@@ -122,25 +122,30 @@ span {
     white-space:nowrap;
 }
 
-.container{
+.check{
     position: absolute;
     right: 2.5vw;
 }
 
-input[type="checkbox"]{
+.temptoggle {
+    position: absolute;
+}
+
+input[id='checkbox']{
     appearance: initial;
-    margin-top: 5px;
+    margin-top: 0.5vh;
     width: 2vw;
     height: 4vh;
     border: none;
     position: absolute;
+    cursor: pointer;
 }
 
-input[type="checkbox"]:checked {
+input[id='checkbox']:checked {
     background: red;
 }
 
-input[type="checkbox"]:checked:after {
+input[id='checkbox']:checked:after {
     content: "X";
     font-size: 1.5em;
     color: #fff;
@@ -149,3 +154,22 @@ input[type="checkbox"]:checked:after {
     top: 50%;
     transform: translate(-50%,-50%);
 }
+
+.temptoggle {
+    background-color: teal;
+    color: white;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 0.5vh;
+    width: 2vw;
+    height: 4vh;
+    left: 0.5vw;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    font-weight: lighter;
+}
+
+

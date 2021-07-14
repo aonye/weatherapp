@@ -12,11 +12,13 @@ const weather = (() => {
         return { cityName, temperature, maxTemp, minTemp, feelsLike, humidity, pressure, windSpeed, conditions, descript, cloudiness };
     }
 
-    async function getWeather(location = 'Tokyo') {
+    async function getWeather(location) {
         let url = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=aabf6a78df5059eed68efb2611dc411a';
         try {
             const response = await fetch(url, { mode: 'cors' });
-            //throw error here
+            if (!response.ok) {
+                throw new Error(`City ${location} not found`);
+            }
             const weatherData = await response.json();
             const weatherObj = processInfo(weatherData);
             return weatherObj;

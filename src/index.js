@@ -5,6 +5,8 @@ const initialize = (() => {
     const input = document.querySelector('#search');
     const submitSearch = document.querySelector('#search + button');
     const checked = document.getElementById('checkbox');
+    const temptoggle = document.querySelector('.temptoggle');
+    let currentObjRef;
     // const test = document.querySelector('#test');
 
     // test.addEventListener('click', testHand);
@@ -13,54 +15,40 @@ const initialize = (() => {
     //     display.toggleForm();
     // }
 
+    function callAPI(input) {
+        let promise = weather.getWeather(input);
+        promise.then(function (result) {
+            try {
+                if (!result) {
+                    throw new Error();
+                }
+                display.appendValues(result);
+                display.toggleForm();
+                display.toggleWidget();
+                currentObjRef = result;
+            } catch (error) {
+            }
+        });
+    }
+
+    function tempToggleHand() {
+        display.appendValues(currentObjRef);
+    }
+
     function xBtnEventHand(event) {
-        console.log(event.target.checked);
         event.target.checked = true;
+        display.resetTempToggle();
         display.toggleForm();
         display.toggleWidget();
     }
 
-
-    function convertVals(obj, tempChoice = 'C') {
-        const { temperature, maxTemp, minTemp, feelsLike } = obj;
-        if (tempChoice === 'C') {
-            for (let key in { temperature, maxTemp, minTemp, feelsLike }) {
-                obj[key] = calcCelsius(obj[key]);
-            }
-        }
-    }
-
-    function calcCelsius(val) {
-        val = roundHalf(parseFloat(val) - 273.15);
-        return val;
-    }
-
-    function calcFahrenheit(val) {
-        val = (((parseFloat(val) - 273.15) * (9 / 5)) + 32).toFixed(1); //toFixed turns it into a string
-        return parseFloat(val);
-    }
-
-    function roundHalf(num) {
-        return Math.round(num * 2) / 2;
-    }
-
     function submitHand(event) {
         event.preventDefault(); //prevent page from refreshing
-        const city = input.value;
+        callAPI(input.value);
         input.value = '';
-        let x = weather.getWeather(city);
-        x.then(function (response) {
-            display.toggleForm();
-            display.toggleWidget();
-            convertVals(response);
-            display.appendValues(response);
-        });
     }
 
+    temptoggle.addEventListener('click', tempToggleHand);
     submitSearch.addEventListener('click', submitHand);
     checked.addEventListener('change', xBtnEventHand);
-
-    return;
 })();
-
-export default initialize;
