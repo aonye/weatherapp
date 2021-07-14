@@ -16,14 +16,29 @@ const display = (() => {
 
     function appendValues(obj) {
         for (let key in obj) {
-            const val = obj[key];
-            let div = getChildDiv(key);
+            let val = obj[key];
+            if (key === 'descript') {
+                val = capitalizeFirst(val);
+            }
+            const div = getChildDiv(key);
+            const unit = getUnit(key);
             if (div) {
-                div.textContent = val;
+                if (unit) {
+                    div.textContent = val + unit;
+                } else {
+                    div.textContent = val;
+                }
             } else {
                 setCity(val);
             }
         }
+    }
+
+    function capitalizeFirst(val) {
+        let arr = val.split('');
+        arr[0] = arr[0].toUpperCase();
+        val = arr.join('');
+        return val;
     }
 
     function setCity(val) {
@@ -31,40 +46,26 @@ const display = (() => {
         city.textContent = val;
     }
 
-    function processTitle(key) {
+    function getUnit(key) {
         switch (key) {
-            case 'cityName': {
-                return '';
-            }
-            case 'temperature': {
-                return 'Temperature: ';
-            }
-            case 'maxTemp': {
-                return 'Max temp: ';
-            }
-            case 'minTemp': {
-                return 'Min temp: ';
-            }
+            case 'temperature':
+            case 'maxTemp':
+            case 'minTemp':
             case 'feelsLike': {
-                return 'Feels like: ';
+                return '\u00B0' + 'C';
             }
-            case 'humidity': {
-                return 'Humidity: ';
+            case 'humidity':
+            case 'cloudiness': {
+                return '%';
             }
             case 'pressure': {
-                return 'Pressure: ';
+                return 'mb';
             }
             case 'windSpeed': {
-                return 'Wind speed: ';
+                return 'km/h';
             }
-            case 'conditions': {
-                return 'Weather: ';
-            }
-            case 'descript': {
-                return 'Description: ';
-            }
-            case 'cloudiness': {
-                return 'Cloudiness: ';
+            default: {
+                return;
             }
         }
     }
