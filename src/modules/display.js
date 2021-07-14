@@ -1,7 +1,6 @@
 import weather from "./weather";
 
 const display = (() => {
-    const weatherdiv = document.getElementById('weatherinfo');
 
     function getChildDiv(key) {
         let selector = 'div.' + key + ' div';
@@ -13,6 +12,25 @@ const display = (() => {
     //     let childSpan = document.querySelector('div.' + key + ' span');
     //     return childSpan;
     // }
+
+    function toggleForm() {
+        const form = document.querySelector('form');
+        if (form.style.display === 'none') {
+            form.style.display = 'flex';
+        } else {
+            form.style.display = 'none';
+        }
+    }
+
+    function toggleWidget() {
+        const weatherdiv = document.getElementById('weatherinfo');
+        console.log(weatherdiv.style.display);
+        if (weatherdiv.style.display === 'none' || !(weatherdiv.style.display)) {
+            weatherdiv.style.display = 'grid';
+        } else {
+            weatherdiv.style.display = 'none';
+        }
+    }
 
     function appendValues(obj) {
         for (let key in obj) {
@@ -74,7 +92,7 @@ const display = (() => {
 
     }
 
-    return { appendValues };
+    return { appendValues, toggleForm, toggleWidget };
 })();
 
 export default display;

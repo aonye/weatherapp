@@ -2,13 +2,16 @@ import weather from "./modules/weather";
 import display from "./modules/display";
 
 const initialize = (() => {
-    const location = '';
-    let x = weather.getWeather();
-    x.then(function (response) {
-        convertVals(response);
-        display.appendValues(response);
-        return response;
-    });
+    const input = document.querySelector('#search');
+    const submitSearch = document.querySelector('#search + button');
+    // const test = document.querySelector('#test');
+
+    // test.addEventListener('click', testHand);
+
+    // function testHand() {
+    //     display.toggleForm();
+    // }
+
 
 
     function convertVals(obj, tempChoice = 'C') {
@@ -33,6 +36,20 @@ const initialize = (() => {
     function roundHalf(num) {
         return Math.round(num * 2) / 2;
     }
+
+    function submitHand(event) {
+        event.preventDefault();
+        let x = weather.getWeather(input.value);
+        x.then(function (response) {
+            display.toggleForm();
+            display.toggleWidget();
+            convertVals(response);
+            display.appendValues(response);
+        });
+    }
+
+    submitSearch.addEventListener('click', submitHand);
+
     return;
 })();
 
