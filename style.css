@@ -1,0 +1,246 @@
+body {
+    font-family: sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    height: 5vh;
+    background-color: rgb(176, 228, 234);
+    color: floralwhite;
+    font-size: 3vw;
+    line-height: 40px;
+    padding: 2rem;
+}
+
+header div {
+    margin: 0px 0.5vw 0px 0.5vw;
+    font-weight: bold;
+}
+
+header img {
+    height: 5vh;
+}
+
+html, body {
+    margin: 0;
+}
+
+form {
+    display: none;
+    justify-content: center;
+    height: 80vh;
+    align-items: center;
+    bottom: 50%;
+}
+
+input{
+    width: 30vw;
+}
+
+form input + button {
+    margin-left: -3vw;
+}
+
+#weatherinfo {
+    background-color: floralwhite;
+    font-weight: bold;
+    border: 0.75vmax solid rgb(32,178,170);
+    border-radius: 10px;
+    height: 50vh;
+    width: 30vw;
+    font-size: 2vmin;
+    display: grid;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+    grid-template-columns: 50px 50px 50px 50px;
+    grid-template-rows: auto;
+    column-gap: 2vw;
+    grid-template-areas:
+    'city city city city'
+    'condition condition cloudy cloudy'
+    'descript descript descript descript'
+    'temp . . feel'
+    'min . . max'
+    'humid . . pressure'
+    'wind wind wind wind';
+}
+
+span {
+    color: teal;
+}
+
+div.cityName {
+    font-size: 3em;
+    color: teal;
+    grid-area: city;
+}
+
+div.conditions {
+    grid-area: condition;
+}
+
+div.descript {
+    grid-area: descript;
+}
+
+div.cloudiness {
+    grid-area: cloudy;
+}
+
+div.temperature {
+    grid-area: temp;
+}
+
+div.feelsLike {
+    grid-area: feel;
+}
+
+div.minTemp {
+    grid-area: min;
+}
+
+div.maxTemp {
+    grid-area: max;
+}
+
+div.humidity {
+    grid-area: humid;
+}
+
+div.pressure {
+    grid-area: pressure;
+}
+
+div.windSpeed {
+    grid-area: wind;
+}
+
+span {
+    white-space:nowrap;
+}
+
+
+#sidebar{  
+    background-color: rgb(230,230,230);
+    height: 100vh;
+    width: 20vw;
+    text-align: left;
+    font-size: 2vw;
+    font-family: sans-serif;
+    padding-top: 5vh;
+}
+
+ol#projects {
+    padding-top: 2vh;
+}
+
+ol#projects li {
+    padding-top: 5px;
+    list-style-type: none;
+    font-size: 1.2vw;
+}
+
+.tasklist {
+    position: absolute;
+    width: 50%;
+    min-height: 6vh;
+    font-size: 1.2vw;
+    left: 25%;
+    top: 20%;
+}
+
+.shadow{
+    box-shadow: 0px 0px 10px red;
+}
+
+ul.tasklist li{
+    display: flex;
+    font-family: sans-serif;
+    list-style-type: none;
+    background-color: rgb(230, 230, 230);
+    margin-top: 10px;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+ul.tasklist li:hover, ul.tasklist li:hover div.duedate button, ul.tasklist li:hover div.priority button{
+    cursor: pointer;
+    background-color: rgb(180, 180, 180);
+}
+
+li div.title{
+    padding-left: 5px;
+}
+
+li div.container {
+    display: flex;
+    justify-self: flex-end;
+}
+
+li div.duedate {
+    display: flex;
+    align-items: center;
+}
+
+li div.duedate div{
+    background-image: url(https://cdn.icon-icons.com/icons2/2528/PNG/512/calendar_icon_151795.png);
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    border: none;
+}
+
+.newtask{
+    display: flex;
+    justify-content: center !important;
+}
+
+/*
+ul.tasklist li div.notes button{
+    background-image: url(https://cdn.iconscout.com/icon/premium/png-256-thumb/notes-2538663-2131009.png);
+    background-size: cover;
+    background-color: gray;
+    margin-top: 5px;
+    width: 25px;
+    height: 25px;
+    border: none;
+}
+*/
+
+ul.tasklist li div.priority button{
+    background-image: url(https://img.icons8.com/ios/452/high-priority.png);
+    background-color: rgb(230, 230, 230);
+    background-size: cover;
+    margin-top: 5px;
+    width: 25px;
+    height: 25px;
+    border: none;
+}
+
+input[type="checkbox"]{
+    appearance: initial;
+    background: rgb(230,230,230);
+    margin-top: 5px;
+    width: 25px;
+    height: 25px;
+    border: none;
+    position: relative;
+    border-radius: 2px;
+}
+input[type="checkbox"]:checked {
+    background: red;
+}
+
+input[type="checkbox"]:checked:after {
+    content: "X";
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
