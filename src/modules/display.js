@@ -1,5 +1,3 @@
-import weather from "./weather";
-
 const display = (() => {
 
     function getChildDiv(key) {
@@ -86,10 +84,6 @@ const display = (() => {
                 return;
             }
         }
-    }
-
-    function addUnits(key) {
-
     }
 
     return { appendValues, toggleForm, toggleWidget };

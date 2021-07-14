@@ -4,6 +4,7 @@ import display from "./modules/display";
 const initialize = (() => {
     const input = document.querySelector('#search');
     const submitSearch = document.querySelector('#search + button');
+    const checked = document.getElementById('checkbox');
     // const test = document.querySelector('#test');
 
     // test.addEventListener('click', testHand);
@@ -12,6 +13,12 @@ const initialize = (() => {
     //     display.toggleForm();
     // }
 
+    function xBtnEventHand(event) {
+        console.log(event.target.checked);
+        event.target.checked = true;
+        display.toggleForm();
+        display.toggleWidget();
+    }
 
 
     function convertVals(obj, tempChoice = 'C') {
@@ -38,8 +45,10 @@ const initialize = (() => {
     }
 
     function submitHand(event) {
-        event.preventDefault();
-        let x = weather.getWeather(input.value);
+        event.preventDefault(); //prevent page from refreshing
+        const city = input.value;
+        input.value = '';
+        let x = weather.getWeather(city);
         x.then(function (response) {
             display.toggleForm();
             display.toggleWidget();
@@ -49,6 +58,7 @@ const initialize = (() => {
     }
 
     submitSearch.addEventListener('click', submitHand);
+    checked.addEventListener('change', xBtnEventHand);
 
     return;
 })();
